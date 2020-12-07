@@ -8,6 +8,6 @@ class IndexView(generic.TemplateView):
     template_name = "index.html"    # base.pyのtemplate_nameを定義
 
 
-class ContactView(generic.TemplateView):
+class ContactView(generic.FormView):
     template_name = "contact.html"
     form_class = ContactForm
