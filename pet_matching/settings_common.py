@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Tokyo'
 
@@ -127,3 +128,40 @@ STATICFILES_DIRS = (
 )
 
 AUTH_USER_MODEL = 'accounts.CustomUser'     # カスタムユーザーモデルを参照するための記述
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'alert alert-danger',
+    messages.WARNING: 'alert alert-warning',
+    messages.SUCCESS: 'alert alert-success',
+    messages.INFO: 'alert alert-info',
+}
+
+
+# djagno-allauthの設定
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth.backends.AuthenticationBackend',      # 一般ユーザー用(メールアドレス認証)
+    'django.contrib.auth.backends.Model.Backend',       # 管理サイト用(ユーザー名認証 )
+)
+
+# メールアドレス認証を行う設定
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+
+# サインアップにメールアドレス確認を挟む
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+# ログイン・ログアウトの遷移先を設定
+LOGIN_REDIRECT_URL = 'matching:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# ログアウトボタンをクリックするだけでログアウト
+ACCOUNT_LOGOUT_ON_GET = True
+
+# django-allauthが送信するメールの件名に空白を追加
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+
+# メールのデフォルトの送信先を設定
+DEFAULT_FROM_EMAIL = 'admin@example.com'

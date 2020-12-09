@@ -58,3 +58,5 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'    # 開発時はメールの配信先をコンソールにする
