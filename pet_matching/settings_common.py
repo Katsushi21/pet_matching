@@ -137,7 +137,7 @@ MESSAGE_TAGS = {
 }
 
 
-# djagno-allauthの設定
+# django-allauthの設定
 SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
