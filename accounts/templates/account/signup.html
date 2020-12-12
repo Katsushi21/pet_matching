@@ -1,13 +1,12 @@
-
 {% extends 'base.html' %}
 
-{% block title %}Log In{% endblock %}
+{% block title %}Sign Up{% endblock %}
 
 {% block contents %}
     <div class="container">
       <div class="row">
           <div class="my-div-style">
-              <h1>Log In</h1>
+              <h1>Sign Up</h1>
               <form method="post" action=" {% url 'account_signup' %}">
 
                   {% csrf_token %}

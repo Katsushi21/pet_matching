@@ -165,3 +165,5 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
 # メールのデフォルトの送信先を設定
 DEFAULT_FROM_EMAIL = 'admin@example.com'
+
+MEDIA_URL = '/media/'   # メディアの配信URLを指定
